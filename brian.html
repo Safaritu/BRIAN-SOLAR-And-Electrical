@@ -27,27 +27,39 @@
         body { font-family: 'Outfit', sans-serif; scroll-behavior: smooth; color: #333333; }
         .glass-nav { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); border-bottom: 2px solid #e2e8f0; }
         
-        /* Logo effects from initial code */
         .logo-img {
-            filter: drop-shadow(0px 4px-6px rgba(0, 0, 0, 0.1));
+            filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1));
             transition: transform 0.3s ease;
         }
 
+        /* PERMANENTLY COLORFUL TOP BUTTONS */
         .nav-box {
-            padding: 8px 14px;
-            border-radius: 12px;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
+            padding: 10px 18px;
+            border-radius: 14px;
+            background: #114232; /* Solid Dark Green */
+            color: #ffffff !important;
+            border: 2px solid #F4B400; /* Bright Yellow Outline */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-size: 0.75rem;
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-weight: 700;
-            color: #114232;
+            gap: 8px;
+            font-weight: 800;
             white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(17, 66, 50, 0.2);
         }
-        .nav-box:hover { border-color: #F4B400; background: #fffcf0; }
+        
+        .nav-box i { color: #F4B400; font-size: 1rem; }
+
+        .nav-box:hover { 
+            background: #F4B400; 
+            color: #114232 !important; 
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 20px -5px rgba(244, 180, 0, 0.5);
+            border-color: #114232;
+        }
+        
+        .nav-box:hover i { color: #114232; }
 
         .hero-bg {
             background: radial-gradient(circle at top right, #f7fee7 0%, #ffffff 100%);
@@ -61,127 +73,133 @@
         .btn-yellow:hover {
             background-color: #d9a000;
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(244, 180, 0, 0.4);
+            box-shadow: 0 10px 20px -3px rgba(244, 180, 0, 0.4);
         }
 
         .service-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-top: 4px solid transparent;
+            border-top: 5px solid transparent;
         }
         .service-card:hover {
-            transform: translateY(-10px);
-            border-top: 4px solid #F4B400;
-            box-shadow: 0 20px 25px -5px rgba(17, 66, 50, 0.1);
+            transform: translateY(-12px);
+            border-top: 5px solid #F4B400;
+            box-shadow: 0 25px 30px -10px rgba(17, 66, 50, 0.15);
         }
 
         .mobile-scroll-menu {
             display: flex !important; 
             overflow-x: auto;
-            gap: 8px;
-            padding: 10px 15px;
+            gap: 10px;
+            padding: 15px;
             scrollbar-width: none;
-            -ms-overflow-style: none;
         }
         .mobile-scroll-menu::-webkit-scrollbar { display: none; }
+
+        .img-float { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
     </style>
 </head>
 <body class="bg-white">
 
     <nav class="fixed w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 md:h-20 items-center">
+            <div class="flex justify-between h-20 md:h-24 items-center">
                 <div class="flex items-center gap-3">
                     <img src="brianlogo.jpeg" alt="Brian Solar Logo" class="h-12 w-auto logo-img md:h-16"> 
                     <div class="flex flex-col">
-                        <span class="text-brandGreen font-black text-lg md:text-xl tracking-tighter leading-none uppercase">BRIAN SOLAR</span>
-                        <span class="text-[9px] md:text-[10px] text-brandYellow font-bold uppercase tracking-[0.2em]">And Electrical</span>
+                        <span class="text-brandGreen font-black text-xl md:text-2xl tracking-tighter leading-none uppercase">BRIAN SOLAR</span>
+                        <span class="text-[10px] md:text-[12px] text-brandYellow font-bold uppercase tracking-[0.25em]">And Electrical</span>
                     </div>
                 </div>
 
                 <div class="hidden md:flex items-center gap-4">
-                    <a href="tel:0768463203" class="btn-yellow px-6 py-2.5 rounded-xl flex items-center gap-2 font-bold">
-                        <i class="fa-solid fa-phone"></i> 0768 463 203
+                    <a href="tel:0768463203" class="btn-yellow px-8 py-3.5 rounded-2xl flex items-center gap-2 font-black shadow-lg">
+                        <i class="fa-solid fa-phone-volume animate-pulse"></i> 0768 463 203
                     </a>
                 </div>
             </div>
 
-            <div class="mobile-scroll-menu border-t border-slate-50 md:border-none md:flex md:justify-center md:pb-4 md:gap-4">
-                <a href="#home" class="nav-box"><i class="fa-solid fa-house"></i> Home</a>
-                <a href="#services" class="nav-box"><i class="fa-solid fa-bolt"></i> Services</a>
-                <a href="#process" class="nav-box"><i class="fa-solid fa-list-check"></i> How It Works</a>
-                <a href="#whyus" class="nav-box"><i class="fa-solid fa-shield-halved"></i> Why Us</a>
-                <a href="#service-areas" class="nav-box"><i class="fa-solid fa-location-dot"></i> Service Areas</a>
+            <div class="mobile-scroll-menu border-t border-slate-50 md:border-none md:flex md:justify-center md:pb-6 md:gap-4">
+                <a href="#home" class="nav-box"><i class="fa-solid fa-house"></i> HOME</a>
+                <a href="#services" class="nav-box"><i class="fa-solid fa-bolt-lightning"></i> SERVICES</a>
+                <a href="#process" class="nav-box"><i class="fa-solid fa-gears"></i> HOW IT WORKS</a>
+                <a href="#whyus" class="nav-box"><i class="fa-solid fa-certificate"></i> WHY US</a>
+                <a href="#service-areas" class="nav-box"><i class="fa-solid fa-map-pin"></i> SERVICE AREAS</a>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="hero-bg pt-44 pb-20 px-4 min-h-screen flex items-center">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+    <section id="home" class="hero-bg pt-56 pb-24 px-4 min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
             <div class="text-center lg:text-left">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-50 text-brandGreen font-bold text-xs uppercase tracking-widest mb-6 border border-green-100">
-                    <span class="flex h-2 w-2 rounded-full bg-brandYellow animate-pulse"></span>
-                    Professional Energy Services Kenya
+                <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-green-100 text-brandGreen font-bold text-xs uppercase tracking-widest mb-8 border border-brandGreen/10">
+                    <span class="flex h-2.5 w-2.5 rounded-full bg-brandYellow animate-ping"></span>
+                    Certified Solar Engineers Kenya
                 </div>
-                <h1 class="text-4xl md:text-6xl font-black text-brandGreen mb-6 leading-[1.1]">
-                    Reliable Solar & <span class="text-brandYellow">Electrical Solutions</span> in Kenya
+                <h1 class="text-5xl md:text-7xl font-black text-brandGreen mb-8 leading-[1.1]">
+                    Reliable Solar & <span class="text-brandYellow">Electrical Solutions</span>
                 </h1>
-                <p class="text-lg text-bodyText mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                    Professional solar installation and electrical services designed to help homes and businesses reduce electricity costs and improve energy reliability. We focus on quality workmanship, safety, and long-term performance.
+                <p class="text-lg md:text-xl text-bodyText mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                    Power your future with Kenya's trusted solar experts. We provide high-efficiency installations and electrical safety for homes and businesses.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <a href="tel:0768463203" class="btn-yellow px-8 py-4 rounded-2xl font-bold text-lg shadow-xl flex items-center justify-center gap-2">
-                        Request a Free Quotation
+                <div class="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
+                    <a href="tel:0768463203" class="btn-yellow px-10 py-5 rounded-[2rem] font-black text-lg shadow-2xl flex items-center justify-center gap-3 uppercase">
+                        Get Free Quotation
                     </a>
-                    <a href="https://wa.me/254768463203" class="bg-white border-2 border-brandGreen text-brandGreen px-8 py-4 rounded-2xl font-bold text-lg transition flex items-center justify-center gap-2">
-                        <i class="fa-brands fa-whatsapp"></i> Call / WhatsApp
+                    <a href="https://wa.me/254768463203" class="bg-white border-4 border-brandGreen text-brandGreen px-10 py-5 rounded-[2rem] font-black text-lg transition flex items-center justify-center gap-3 hover:bg-brandGreen hover:text-white">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i> Call / WhatsApp
                     </a>
                 </div>
             </div>
             <div class="relative px-4">
-                <div class="absolute -inset-2 bg-brandGreen/5 rounded-[2.5rem] rotate-3"></div>
-                <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=2072&auto=format&fit=crop" alt="Solar Installation" class="relative rounded-[2rem] shadow-2xl border-4 border-white object-cover h-[350px] md:h-[500px] w-full">
+                <div class="absolute -inset-4 bg-brandGreen/10 rounded-[3rem] rotate-3 blur-sm"></div>
+                <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=2072&auto=format&fit=crop" alt="Solar Installation" class="relative rounded-[2.5rem] shadow-2xl border-4 border-white object-cover h-[400px] md:h-[550px] w-full transform hover:scale-[1.01] transition duration-500">
             </div>
         </div>
     </section>
 
     <section id="services" class="py-24 px-4 bg-lightGrey">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-brandGreen text-3xl md:text-5xl font-black mb-4 uppercase">Our Services</h2>
-                <p class="text-bodyText font-medium max-w-xl mx-auto">We offer dependable energy and electrical solutions tailored to your needs.</p>
+            <div class="text-center mb-20">
+                <h2 class="text-brandGreen text-4xl md:text-6xl font-black mb-6 uppercase italic tracking-tighter">Our Core Services</h2>
+                <div class="h-2 w-24 bg-brandYellow mx-auto rounded-full"></div>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="service-card p-8 rounded-3xl bg-white shadow-sm border border-slate-100">
-                    <div class="w-14 h-14 bg-brandGreen text-brandYellow rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-lg">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="service-card p-10 rounded-[2.5rem] bg-white shadow-sm border border-slate-100">
+                    <div class="w-16 h-16 bg-brandGreen text-brandYellow rounded-2xl flex items-center justify-center text-3xl mb-8 shadow-lg">
                         <i class="fa-solid fa-solar-panel"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-brandGreen leading-tight">Solar System Installation</h3>
-                    <p class="text-bodyText text-sm">Residential and commercial solar systems including off-grid and hybrid solutions.</p>
+                    <h3 class="text-xl font-black mb-4 text-brandGreen leading-tight">Solar System Installation</h3>
+                    <p class="text-bodyText text-sm leading-relaxed">Top-tier solar panels and inverters for consistent power.</p>
                 </div>
 
-                <div class="service-card p-8 rounded-3xl bg-white shadow-sm border border-slate-100">
-                    <div class="w-14 h-14 bg-brandGreen text-brandYellow rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-lg">
-                        <i class="fa-solid fa-plug-circle-bolt"></i>
+                <div class="service-card p-10 rounded-[2.5rem] bg-white shadow-sm border border-slate-100">
+                    <div class="w-16 h-16 bg-brandGreen text-brandYellow rounded-2xl flex items-center justify-center text-3xl mb-8 shadow-lg">
+                        <i class="fa-solid fa-bolt"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-brandGreen leading-tight">Electrical Installation & Maintenance</h3>
-                    <p class="text-bodyText text-sm">Electrical wiring, upgrades, fault diagnosis, and maintenance services.</p>
+                    <h3 class="text-xl font-black mb-4 text-brandGreen leading-tight">Electrical Engineering</h3>
+                    <p class="text-bodyText text-sm leading-relaxed">Full building wiring, safety audits, and industrial solutions.</p>
                 </div>
 
-                <div class="service-card p-8 rounded-3xl bg-white shadow-sm border border-slate-100">
-                    <div class="w-14 h-14 bg-brandGreen text-brandYellow rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-lg">
-                        <i class="fa-solid fa-faucet-drip"></i>
+                <div class="service-card p-10 rounded-[2.5rem] bg-white shadow-sm border border-slate-100">
+                    <div class="w-16 h-16 bg-brandGreen text-brandYellow rounded-2xl flex items-center justify-center text-3xl mb-8 shadow-lg">
+                        <i class="fa-solid fa-droplet"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-brandGreen leading-tight">Borehole & Water Pump Solarisation</h3>
-                    <p class="text-bodyText text-sm">Solar-powered pumping systems for boreholes and water supply.</p>
+                    <h3 class="text-xl font-black mb-4 text-brandGreen leading-tight">Solar Water Pumps</h3>
+                    <p class="text-bodyText text-sm leading-relaxed">Efficient borehole solarisation for farms and homes.</p>
                 </div>
 
-                <div class="service-card p-8 rounded-3xl bg-white shadow-sm border border-slate-100">
-                    <div class="w-14 h-14 bg-brandGreen text-brandYellow rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-lg">
-                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                <div class="service-card p-10 rounded-[2.5rem] bg-white shadow-sm border border-slate-100">
+                    <div class="w-16 h-16 bg-brandGreen text-brandYellow rounded-2xl flex items-center justify-center text-3xl mb-8 shadow-lg">
+                        <i class="fa-solid fa-tools"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-brandGreen leading-tight">System Maintenance & Repairs</h3>
-                    <p class="text-bodyText text-sm">Inspection, servicing, and troubleshooting of solar and electrical systems.</p>
+                    <h3 class="text-xl font-black mb-4 text-brandGreen leading-tight">System Maintenance</h3>
+                    <p class="text-bodyText text-sm leading-relaxed">Quick repairs and regular servicing to maximize performance.</p>
                 </div>
             </div>
         </div>
@@ -189,128 +207,113 @@
 
     <section id="process" class="py-24 bg-brandGreen text-white">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-black mb-4 uppercase italic">How It Works</h2>
-                <div class="h-1.5 w-24 bg-brandYellow mx-auto rounded-full"></div>
-            </div>
-            
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="relative p-6 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-sm">
-                    <span class="text-5xl font-black text-brandYellow/20 absolute top-4 right-6">01</span>
-                    <h4 class="font-bold text-xl mb-4 text-brandYellow">Consultation</h4>
-                    <p class="text-green-50/70 text-sm">Consultation & Site Assessment to evaluate your energy needs.</p>
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-5xl font-black mb-12 uppercase italic">Simple 4-Step Process</h2>
+                    <div class="space-y-10">
+                        <div class="flex gap-6">
+                            <span class="text-4xl font-black text-brandYellow opacity-40">01</span>
+                            <div>
+                                <h4 class="font-bold text-2xl text-brandYellow">Site Survey</h4>
+                                <p class="text-green-50/70">We visit your location to measure and assess needs.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <span class="text-4xl font-black text-brandYellow opacity-40">02</span>
+                            <div>
+                                <h4 class="font-bold text-2xl text-brandYellow">Custom Design</h4>
+                                <p class="text-green-50/70">Our engineers create a plan specifically for your budget.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <span class="text-4xl font-black text-brandYellow opacity-40">03</span>
+                            <div>
+                                <h4 class="font-bold text-2xl text-brandYellow">Fast Installation</h4>
+                                <p class="text-green-50/70">Most systems are up and running within 48 hours.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="relative p-6 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-sm">
-                    <span class="text-5xl font-black text-brandYellow/20 absolute top-4 right-6">02</span>
-                    <h4 class="font-bold text-xl mb-4 text-brandYellow">Design</h4>
-                    <p class="text-green-50/70 text-sm">System Design & Cost Estimate tailored to your requirements.</p>
-                </div>
-                <div class="relative p-6 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-sm">
-                    <span class="text-5xl font-black text-brandYellow/20 absolute top-4 right-6">03</span>
-                    <h4 class="font-bold text-xl mb-4 text-brandYellow">Installation</h4>
-                    <p class="text-green-50/70 text-sm">Professional Installation by our trained technicians.</p>
-                </div>
-                <div class="relative p-6 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-sm">
-                    <span class="text-5xl font-black text-brandYellow/20 absolute top-4 right-6">04</span>
-                    <h4 class="font-bold text-xl mb-4 text-brandYellow">Support</h4>
-                    <p class="text-green-50/70 text-sm">Ongoing Support & Maintenance for long-term performance.</p>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1558444479-c84825d2ea50?q=80&w=2070&auto=format&fit=crop" alt="Engineer working" class="rounded-[3rem] shadow-2xl border-8 border-white/10">
+                    <div class="absolute -bottom-6 -left-6 bg-brandYellow p-8 rounded-3xl text-brandGreen shadow-2xl hidden md:block">
+                        <p class="font-black text-3xl">100%</p>
+                        <p class="font-bold text-sm uppercase">Success Rate</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="whyus" class="py-24 px-4 bg-white">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
-            <div>
-                <h2 class="text-4xl font-black text-brandGreen mb-10 uppercase italic">Why Choose Us?</h2>
-                <div class="space-y-6">
-                    <div class="flex gap-4 items-start">
-                        <i class="fa-solid fa-check-circle text-brandYellow text-2xl mt-1"></i>
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="order-2 lg:order-1">
+                <img src="https://images.unsplash.com/photo-1624392338752-a35a3e1c6ee1?q=80&w=2070&auto=format&fit=crop" alt="Solar Technician" class="rounded-[3rem] shadow-2xl border-4 border-lightGrey img-float">
+            </div>
+            <div class="order-1 lg:order-2">
+                <h2 class="text-5xl font-black text-brandGreen mb-10 uppercase italic">Why Work With Us?</h2>
+                <div class="space-y-8">
+                    <div class="flex gap-6 items-start">
+                        <i class="fa-solid fa-circle-check text-brandYellow text-3xl mt-1"></i>
                         <div>
-                            <p class="font-bold text-brandGreen text-lg">Trained and experienced technicians</p>
-                            <p class="text-bodyText text-sm">Expert staff ensuring safety and quality on every site.</p>
+                            <p class="font-black text-brandGreen text-xl uppercase">Trained Specialists</p>
+                            <p class="text-bodyText">EPRA certified technicians for maximum safety.</p>
                         </div>
                     </div>
-                    <div class="flex gap-4 items-start">
-                        <i class="fa-solid fa-check-circle text-brandYellow text-2xl mt-1"></i>
+                    <div class="flex gap-6 items-start">
+                        <i class="fa-solid fa-circle-check text-brandYellow text-3xl mt-1"></i>
                         <div>
-                            <p class="font-bold text-brandGreen text-lg">Quality-approved equipment</p>
-                            <p class="text-bodyText text-sm">We only use top-tier solar and electrical components.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 items-start">
-                        <i class="fa-solid fa-check-circle text-brandYellow text-2xl mt-1"></i>
-                        <div>
-                            <p class="font-bold text-brandGreen text-lg">Transparent Pricing</p>
-                            <p class="text-bodyText text-sm">Clear quotations with no hidden costs for our clients.</p>
+                            <p class="font-black text-brandGreen text-xl uppercase">Tier-1 Components</p>
+                            <p class="text-bodyText">We only use global standard panels and batteries.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div id="service-areas" class="bg-lightGrey p-8 md:p-10 rounded-[2.5rem] border-2 border-slate-100 shadow-sm">
-                <h3 class="text-2xl font-black text-brandGreen mb-6 uppercase italic">Service Areas</h3>
-                <p class="text-bodyText mb-8 leading-relaxed font-medium">
-                    We provide solar and electrical services in <strong>Nairobi, Kitui, Machakos, Makueni, Thika, Kiambu, Mombasa,</strong> and surrounding areas in Kenya.
-                </p>
-                <div class="bg-brandGreen p-8 rounded-3xl text-white">
-                    <h4 class="text-xl font-bold mb-2">Talk to a Solar Expert</h4>
-                    <p class="text-green-100/70 text-sm mb-6">Contact us today for a consultation and quotation.</p>
-                    <a href="tel:0768463203" class="btn-yellow w-full py-4 rounded-2xl font-black uppercase text-center block text-sm tracking-widest shadow-lg">
-                        Request a Free Quotation
-                    </a>
+                
+                <div id="service-areas" class="mt-16 bg-lightGrey p-10 rounded-[3rem] border-2 border-brandYellow/10">
+                    <h3 class="text-2xl font-black text-brandGreen mb-4 uppercase italic">Service Coverage</h3>
+                    <p class="font-bold text-brandGreen/80 leading-relaxed uppercase tracking-tighter">
+                        Nairobi • Kitui • Machakos • Makueni • Thika • Kiambu • Mombasa
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-brandGreen text-white pt-20 pb-32 px-4">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 mb-16">
+    <footer class="bg-brandGreen text-white pt-24 pb-40 px-4">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16 mb-20">
             <div>
-                <h4 class="text-xl font-black mb-6 uppercase">Brian Solar & Electrical</h4>
-                <p class="text-green-100/60 text-sm leading-relaxed mb-6">
-                    Professional solar and electrical services across Kenya. We focus on quality workmanship, safety, and long-term performance.
-                </p>
+                <h4 class="text-2xl font-black mb-8 uppercase">Brian Solar</h4>
+                <p class="text-green-100/60 leading-loose mb-8">Kenya's leading provider of renewable energy and professional electrical engineering services.</p>
                 <div class="flex gap-4">
-                    <a href="tel:0768463203" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brandYellow transition"><i class="fa-solid fa-phone"></i></a>
-                    <a href="mailto:info@briansolar.co.ke" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brandYellow transition"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="tel:0768463203" class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center hover:bg-brandYellow transition"><i class="fa-solid fa-phone"></i></a>
+                    <a href="https://wa.me/254768463203" class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center hover:bg-brandYellow transition"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
             <div>
-                <h4 class="font-black uppercase tracking-widest text-xs mb-8 text-brandYellow">Quick Links</h4>
-                <ul class="space-y-4 text-sm text-green-100/70">
+                <h4 class="font-black uppercase tracking-widest text-xs mb-10 text-brandYellow">Company</h4>
+                <ul class="space-y-5 font-bold uppercase text-sm">
                     <li><a href="#home" class="hover:text-brandYellow transition">Home</a></li>
-                    <li><a href="#services" class="hover:text-brandYellow transition">Services</a></li>
-                    <li><a href="#service-areas" class="hover:text-brandYellow transition">Service Areas</a></li>
-                    <li><a href="#" class="hover:text-brandYellow transition">Privacy Policy</a></li>
+                    <li><a href="#services" class="hover:text-brandYellow transition">Our Services</a></li>
+                    <li><a href="#whyus" class="hover:text-brandYellow transition">About Us</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-black uppercase tracking-widest text-xs mb-8 text-brandYellow">Direct Contact</h4>
-                <div class="space-y-4">
-                    <div class="flex items-center gap-4">
-                        <i class="fa-solid fa-phone text-brandYellow"></i>
-                        <span class="font-bold text-lg">0768 463 203</span>
-                    </div>
-                    <div class="flex items-center gap-4 text-green-100/70">
-                        <i class="fa-solid fa-envelope text-brandYellow"></i>
-                        <span>info@briansolar.co.ke</span>
-                    </div>
-                    <p class="text-[11px] text-green-100/40 italic">Brian Solar & Electrical provides solar installation and electrical services in Nairobi, Kitui, Machakos, Makueni, Kiambu, Mombasa, and surrounding areas in Kenya.</p>
-                </div>
+                <h4 class="font-black uppercase tracking-widest text-xs mb-10 text-brandYellow">Direct Line</h4>
+                <p class="text-3xl font-black text-brandYellow mb-4">0768 463 203</p>
+                <p class="text-green-100/50 italic text-sm">Available for emergency repairs and new project consultations across Kenya.</p>
             </div>
         </div>
-        <div class="text-center pt-8 border-t border-white/5 text-[10px] text-white/30 font-black tracking-[0.4em] uppercase">
+        <div class="text-center pt-10 border-t border-white/5 text-[10px] text-white/30 font-black tracking-[0.4em] uppercase">
             © 2026 Brian Solar & Electrical. All Rights Reserved.
         </div>
     </footer>
 
-    <div class="md:hidden fixed bottom-6 left-6 right-6 z-50 flex gap-3">
-        <a href="tel:0768463203" class="flex-1 bg-brandGreen text-white py-4 rounded-2xl font-bold text-center shadow-2xl flex items-center justify-center gap-2 border border-green-800">
-            <i class="fa-solid fa-phone"></i> Call
+    <div class="md:hidden fixed bottom-8 left-6 right-6 z-50 flex gap-4">
+        <a href="tel:0768463203" class="flex-1 bg-brandGreen text-white py-5 rounded-[2rem] font-black text-center shadow-2xl flex items-center justify-center gap-3 border-2 border-brandYellow">
+            <i class="fa-solid fa-phone"></i> CALL
         </a>
-        <a href="https://wa.me/254768463203" class="flex-1 btn-yellow py-4 rounded-2xl font-bold text-center shadow-2xl flex items-center justify-center gap-2">
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        <a href="https://wa.me/254768463203" class="flex-1 btn-yellow py-5 rounded-[2rem] font-black text-center shadow-2xl flex items-center justify-center gap-3">
+            <i class="fa-brands fa-whatsapp text-xl"></i> WHATSAPP
         </a>
     </div>
 
