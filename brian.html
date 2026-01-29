@@ -3,128 +3,713 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brian Solar & Electrical | Solar & Electrical Services in Nairobi</title>
-  <meta name="description" content="Brian Solar & Electrical provides professional solar system design, installation, maintenance, and electrical services across Nairobi County. Service-area business. Call 0768463203." />
-  <meta name="keywords" content="solar installation Nairobi, electrical services Nairobi, solar maintenance Kenya, electrical wiring, solar power systems" />
+  <title>Brian Solar & Electrical | Professional Solar & Electrical Services in Nairobi</title>
+  <meta name="description" content="Professional solar system design, installation, maintenance, and electrical services across Nairobi County. Service-area business. Call 0768463203." />
+  <meta name="keywords" content="solar installation Nairobi, electrical services Nairobi, solar maintenance Kenya, electrical wiring, solar power systems, borehole solarisation" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.briansolar.co.ke/" />
 
   <style>
-    :root{
-      --primary:#0b4da2; --secondary:#25D366; --dark:#111; --light:#f5f7fa;
+    :root {
+      --primary: #0b4da2;
+      --secondary: #25D366;
+      --accent: #ff9800;
+      --dark: #0f172a;
+      --light: #f5f7fa;
+      --white: #ffffff;
+      --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.12);
     }
-    body{font-family:'Segoe UI',Arial,sans-serif;margin:0;line-height:1.7;color:#333;background:#fff}
     
-
-header.hero {
-  position: relative;
-  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('hero.jpeg');
-  background-size: cover;
-  background-position: center;
-  color: #fff;
-  padding: 80px 20px 50px 20px;
-  display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  text-align: center;
-  min-height: 300px;
-}
-
-header .logo {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  max-width: 120px; 
-  height: auto;
-  background: rgba(255,255,255,0.95);
-  padding: 6px;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  z-index: 10;
-}
-
-
-@media (max-width: 600px) {
-  header .logo {
-    max-width: 90px; 
-    top: 10px;
-    left: 10px;
-    padding: 4px;
-  }
-  
-  header.hero {
-    padding-top: 70px; 
-    min-height: 250px;
-  }
-
-  .hero h1 {
-    font-size: 1.6rem; 
-    margin-top: 10px;
-  }
-}
-
-
-.hero p {
-  max-width: 700px;
-  margin: 10px auto;
-  font-size: 1.05rem;
-}
-
-.cta-btn {
-  display: inline-block;
-  margin-top: 15px;
-  background: var(--secondary);
-  color: #fff;
-  padding: 12px 24px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-    nav{position:sticky;top:0;background:#083b7a;padding:12px;text-align:center;z-index:100}
-    nav a{color:#fff;margin:0 12px;text-decoration:none;font-weight:600}
-    nav a:hover{text-decoration:underline}
-    
-    section{padding:70px 20px;max-width:1150px;margin:auto}
-    h1,h2,h3{color:var(--primary)}
-    .hero h1 { color: #fff; font-size: 2.8rem; margin: 0; }
-    .hero p { color: #eee; font-size: 1.2rem; max-width: 700px; margin: 15px auto; }
-    
-    .cta-btn{display:inline-block;margin-top:20px;background:var(--secondary);color:#fff;padding:14px 28px;border-radius:30px;text-decoration:none;font-weight:600}
-    
-    .services-grid, .areas-grid, .gallery-grid, .trust-bar {display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:25px; margin-top:20px;}
-    
-   
-    .placeholder, .service-card, .trust, .areas-grid div {
-      background:#fff; 
-      padding:20px; 
-      border-radius:12px; 
-      box-shadow:0 4px 15px rgba(0,0,0,.06); 
-      text-align:center;
+    * {
+      box-sizing: border-box;
+      margin: 0;
     }
-
+    
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.7;
+      color: #333;
+      background: #fff;
+      scroll-behavior: smooth;
+    }
+    
+    h1, h2, h3, h4 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+    
+    h1 { font-size: 2.4rem; }
+    h2 { font-size: 2rem; margin-bottom: 20px; }
+    h3 { font-size: 1.4rem; margin-bottom: 15px; }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    section {
+      padding: 60px 20px;
+      max-width: 1150px;
+      margin: auto;
+    }
+    
+    .light-bg {
+      background: #f5f7fa;
+    }
+    
+    /* Sticky CTA Bar */
+    .sticky-cta {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--primary);
+      color: var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      padding: 10px;
+      z-index: 2000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .sticky-cta span {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .sticky-cta a {
+      background: var(--secondary);
+      color: var(--white);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+    
+    .sticky-cta a:hover {
+      transform: scale(1.05);
+      background-color: #1da851;
+    }
+    
+    .sticky-cta a.alt {
+      background: var(--accent);
+    }
+    
+    .sticky-cta a.alt:hover {
+      background-color: #e68900;
+    }
+    
+    /* Hero Section - Minimized */
+    header.hero {
+      position: relative;
+      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('hero.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: scroll;
+      color: #fff;
+      padding: 70px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-height: 450px;
+    }
+    
+    /* Enhanced Logo Styling for Maximum Visibility */
+    .hero .logo-container {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(255,255,255,1);
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 
+        0 8px 25px rgba(0,0,0,0.3),
+        0 0 0 3px var(--primary),
+        inset 0 0 15px rgba(255,255,255,0.5);
+      z-index: 1000;
+      border: 3px solid rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+    }
+    
+    .hero .logo-img {
+      max-width: 150px;
+      min-width: 130px;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      width: 100%;
+      margin-top: 20px;
+    }
+    
+    .hero h1 {
+      color: #fff;
+      font-size: 2.2rem;
+      margin: 15px 0;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      animation: slideDown 0.8s ease-out;
+    }
+    
+    .hero p {
+      color: #f8f8f8;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 25px;
+      line-height: 1.6;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+      animation: fadeIn 1s ease-out 0.2s both;
+    }
+    
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+      animation: fadeIn 1s ease-out 0.4s both;
+    }
+    
+    .cta-btn {
+      display: inline-block;
+      margin: 5px;
+      background: var(--secondary);
+      color: #fff;
+      padding: 13px 26px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      border: 2px solid transparent;
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+      border-color: rgba(255,255,255,0.4);
+    }
+    
+    .cta-btn.secondary {
+      background: var(--accent);
+    }
+    
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 45px;
+      background: #083b7a;
+      padding: 12px;
+      text-align: center;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    nav a {
+      color: #fff;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s;
+      position: relative;
+      padding: 5px 0;
+    }
+    
+    nav a:hover {
+      color: var(--accent);
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    /* Grid Systems */
+    .services-grid, .areas-grid, .gallery-grid, .trust-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    .placeholder, .service-card, .trust-item, .areas-grid div {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: all 0.3s;
+    }
+    
+    .placeholder:hover, .service-card:hover, .areas-grid div:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    
     .placeholder img {
       width: 100%;
-      height: 250px; 
+      height: 200px;
       object-fit: cover;
-      border-radius: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      transition: transform 0.3s;
+    }
+    
+    .placeholder:hover img {
+      transform: scale(1.02);
+    }
+    
+    /* Enhanced Services Section */
+    .service-card h3 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+    
+    .service-card p {
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    
+    .service-feature {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      text-align: left;
+      color: #444;
+    }
+    
+    .service-feature i {
+      color: var(--secondary);
+      margin-right: 10px;
+      font-style: normal;
+      font-weight: bold;
+    }
+    
+    /* Enhanced Trust Section */
+    .trust-item {
+      text-align: left;
+      padding: 25px;
+      border-left: 4px solid var(--secondary);
+    }
+    
+    .trust-item h4 {
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .trust-item p {
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    /* Enhanced About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    
+    .about-feature {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+    
+    .about-feature h4 {
+      color: var(--primary);
       margin-bottom: 15px;
     }
-
-    .light-bg{background:#f5f7fa}
-    footer{background:var(--dark);color:#eee;padding:50px 20px}
-    footer a{color:#eee;text-decoration:none}
-    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px}
-    .small{font-size:.9em;color:#ccc}
     
-    form input, form textarea {border:1px solid #ccc; border-radius:5px; padding:10px; width:100%; box-sizing: border-box; margin-bottom: 15px;}
-    button{background:var(--primary); color:#fff; padding:12px 25px; border:none; border-radius:6px; cursor:pointer; font-weight: bold;}
-    button:hover{background:#083b7a;}
-
+    .about-feature p {
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    /* Enhanced FAQ Section */
+    .faq-item {
+      background: #fff;
+      margin-bottom: 20px;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--accent);
+    }
+    
+    .faq-item h3 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+    
+    .faq-item p {
+      color: #555;
+      line-height: 1.7;
+    }
+    
+    footer {
+      background: var(--dark);
+      color: #eee;
+      padding: 50px 20px;
+    }
+    
+    footer a {
+      color: #eee;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    footer a:hover {
+      color: var(--secondary);
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    
+    .footer-col h3 {
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+    
+    .footer-col p {
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    
+    .small {
+      font-size: .9em;
+      color: #aaa;
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #444;
+    }
+    
+    form {
+      max-width: 500px;
+      margin: 30px auto 0;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    form input, form textarea, form select {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 12px;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    
+    form input:focus, form textarea:focus, form select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(11, 77, 162, 0.1);
+    }
+    
+    button {
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: background-color 0.3s, transform 0.3s;
+      width: 100%;
+    }
+    
+    button:hover {
+      background: #083b7a;
+      transform: translateY(-2px);
+    }
+    
+    .areas-grid div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    .areas-grid div:hover {
+      background: var(--primary);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+    
+    .float-btn {
+      position: fixed;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      z-index: 999;
+      transition: transform 0.3s;
+    }
+    
+    .float-btn:hover {
+      transform: scale(1.1);
+    }
+    
+    .whatsapp-btn {
+      bottom: 100px;
+      background: #25D366;
+    }
+    
+    .call-btn {
+      bottom: 20px;
+      background: #0b4da2;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 992px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.8rem; }
+      h3 { font-size: 1.3rem; }
+    }
+    
     @media (max-width: 768px) {
-      header.hero { align-items: center; text-align: center; }
-      header .logo { margin-left: 0; }
-      .hero h1 { font-size: 2rem; }
+      .sticky-cta {
+        flex-direction: column;
+        gap: 8px;
+        padding: 8px;
+        top: 0;
+      }
+      
+      .sticky-cta span {
+        font-size: 0.85rem;
+      }
+      
+      nav {
+        top: 70px;
+        padding: 10px;
+      }
+      
+      nav a {
+        margin: 0 8px;
+        font-size: 0.9rem;
+      }
+      
+      section {
+        padding: 50px 20px;
+      }
+      
+      header.hero {
+        padding: 60px 20px 30px;
+        min-height: 400px;
+      }
+      
+      .hero .logo-container {
+        top: 15px;
+        left: 15px;
+        padding: 12px;
+      }
+      
+      .hero .logo-img {
+        max-width: 130px;
+        min-width: 110px;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .cta-btn {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+        margin: 3px;
+      }
+      
+      .services-grid, .gallery-grid, .trust-bar {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+      
+      .placeholder img {
+        height: 180px;
+      }
+      
+      .float-btn {
+        width: 55px;
+        height: 55px;
+        right: 15px;
+      }
+      
+      .whatsapp-btn {
+        bottom: 90px;
+      }
+      
+      .areas-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+      
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header.hero {
+        padding: 50px 15px 25px;
+        min-height: 350px;
+      }
+      
+      .hero .logo-container {
+        top: 10px;
+        left: 10px;
+        padding: 10px;
+      }
+      
+      .hero .logo-img {
+        max-width: 110px;
+        min-width: 90px;
+      }
+      
+      .hero h1 {
+        font-size: 1.6rem;
+        margin: 10px 0;
+      }
+      
+      .hero p {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+      }
+      
+      nav {
+        top: 70px;
+        padding: 8px;
+      }
+      
+      nav a {
+        margin: 0 5px;
+        font-size: 0.85rem;
+      }
+      
+      .cta-group {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 300px;
+        margin: 15px auto 0;
+      }
+      
+      .cta-btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+        margin: 5px 0;
+        padding: 11px 22px;
+      }
+      
+      .services-grid, .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .gallery-grid {
+        gap: 15px;
+      }
+      
+      .areas-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      
+      .placeholder, .service-card, .trust-item, .faq-item, .about-feature {
+        padding: 20px;
+      }
+      
+      .placeholder img {
+        height: 160px;
+      }
+      
+      .float-btn {
+        width: 50px;
+        height: 50px;
+        right: 10px;
+        font-size: 22px;
+      }
+      
+      .whatsapp-btn {
+        bottom: 80px;
+      }
+      
+      .call-btn {
+        bottom: 15px;
+      }
     }
   </style>
 
@@ -137,105 +722,216 @@ header .logo {
     "telephone": "+254768463203",
     "email": "info@briansolar.co.ke",
     "address": {"@type":"PostalAddress","addressCountry":"KE"},
-    "areaServed": "Nairobi County",
-    "description": "Service-area solar and electrical installation company providing on-site services across Nairobi County."
+    "areaServed": ["Nairobi", "Kiambu", "Machakos", "Kajiado", "Murang'a", "Kitui", "Nyeri", "Kirinyaga", "Embu", "Makueni", "Meru", "Laikipia", "Nakuru", "Nyandarua"],
+    "description": "Service-area solar and electrical installation company providing on-site services across Nairobi County and surrounding areas.",
+    "openingHours": "Mo-Sa 08:00-18:00",
+    "priceRange": "$$"
   }
   </script>
 </head>
 <body>
 
+<!-- Sticky CTA Bar -->
+<div class="sticky-cta">
+  <span>Need Professional Solar or Electrical Services?</span>
+  <a href="#contact">Get Free Quote</a>
+  <a href="tel:+254768463203" class="alt">Call: 0768463203</a>
+</div>
+
+<!-- Hero Section -->
 <header class="hero">
-  <img src="brianlogo.jpeg" alt="Brian Solar and Electrical logo" class="logo">
+  <div class="logo-container">
+    <img src="brianlogo.jpeg" alt="Brian Solar and Electrical logo" class="logo-img">
+  </div>
   <div class="hero-content">
-    <h1>Trusted Solar & Electrical Experts</h1>
-    <p>Professional solar installation, electrical works, borehole solarisation & maintenance.</p>
-    <div>
-      <a href="https://wa.me/254768463203" class="cta-btn">WhatsApp Us</a>
-      <a href="tel:+254768463203" class="cta-btn">Call Now</a>
+    <h1>Professional Solar & Electrical Experts in Nairobi</h1>
+    <p>Reliable solar installation, borehole solarisation & electrical services across Nairobi County and surrounding areas. We bring expertise directly to your location.</p>
+    <div class="cta-group">
+      <a href="https://wa.me/254768463203" class="cta-btn">WhatsApp: 0768463203</a>
+      <a href="tel:+254768463203" class="cta-btn secondary">Emergency Call Now</a>
     </div>
   </div>
 </header>
 
+<!-- Navigation -->
 <nav>
   <a href="#home">Home</a>
   <a href="#services">Services</a>
   <a href="#gallery">Gallery</a>
+  <a href="#areas">Service Areas</a>
   <a href="#about">About</a>
   <a href="#faq">FAQ</a>
   <a href="#contact">Contact</a>
 </nav>
 
+<!-- Home Section -->
 <section id="home">
   <h2>Reliable Solar & Electrical Services in Nairobi</h2>
   <p>
-    Brian Solar & Electrical provides professional solar system design, supply, installation, and electrical services for residential and commercial clients. We operate strictly as a <strong>service-area business</strong>, delivering all services directly at customer locations.
+    Brian Solar & Electrical provides professional solar system design, supply, installation, and electrical services for residential and commercial clients. We operate strictly as a <strong>service-area business</strong>, delivering all services directly at customer locations throughout Nairobi and surrounding counties.
   </p>
-  <div class="cta" style="background:var(--light); padding: 20px; border-radius: 12px; text-align: center; margin-top: 20px;">
-    <h3>Request a Quote</h3>
-    <p>Call us today to schedule a consultation or site visit.</p>
-    <p><strong>📞 0768463203</strong></p>
+  <div class="cta" style="background:var(--light); padding: 25px; border-radius: 12px; text-align: center; margin-top: 30px;">
+    <h3>Request a Free Site Assessment</h3>
+    <p>Contact us today to schedule a consultation or site visit. We'll assess your needs and provide a detailed quote.</p>
+    <p style="margin-top: 15px; font-size: 1.2rem;"><strong>📞 Call: 0768463203</strong></p>
   </div>
 </section>
 
+<!-- Enhanced Services Section -->
 <section id="services" class="light-bg">
-  <h2>Our Services</h2>
+  <h2>Our Professional Services</h2>
+  <p style="max-width: 800px; margin: 0 auto 30px; color: #555; text-align: center;">We offer comprehensive solar and electrical solutions with a focus on quality, safety, and customer satisfaction.</p>
+  
   <div class="services-grid">
-    <div class="service-card"><h3>Solar PV Installation</h3><p>Design, installation, and commissioning of reliable solar PV systems.</p></div>
-    <div class="service-card"><h3>Electrical Installation</h3><p>Professional wiring, fault diagnosis, and maintenance carried out to standard.</p></div>
-    <div class="service-card"><h3>Borehole Solarisation</h3><p>Solar-powered borehole solutions to reduce costs and ensure water supply.</p></div>
-    <div class="service-card"><h3>System Maintenance</h3><p>Troubleshooting and after-installation support for your systems.</p></div>
+    <div class="service-card">
+      <h3>Solar PV Installation</h3>
+      <p>Complete solar system design, installation, and commissioning for homes and businesses.</p>
+      <div class="service-feature"><i>✓</i> Residential & commercial systems</div>
+      <div class="service-feature"><i>✓</i> Battery backup solutions</div>
+      <div class="service-feature"><i>✓</i> Inverter installation</div>
+      <div class="service-feature"><i>✓</i> Grid-tie and off-grid systems</div>
+    </div>
+    
+    <div class="service-card">
+      <h3>Electrical Installation</h3>
+      <p>Professional electrical wiring, upgrades, and maintenance services.</p>
+      <div class="service-feature"><i>✓</i> Building wiring & rewiring</div>
+      <div class="service-feature"><i>✓</i> Fault diagnosis & repair</div>
+      <div class="service-feature"><i>✓</i> Lighting installation</div>
+      <div class="service-feature"><i>✓</i> Electrical panel upgrades</div>
+    </div>
+    
+    <div class="service-card">
+      <h3>Borehole Solarisation</h3>
+      <p>Solar-powered water pumping systems for farms, homes, and institutions.</p>
+      <div class="service-feature"><i>✓</i> Solar pump installation</div>
+      <div class="service-feature"><i>✓</i> Water storage solutions</div>
+      <div class="service-feature"><i>✓</i> Pressure system setup</div>
+      <div class="service-feature"><i>✓</i> Remote monitoring</div>
+    </div>
+    
+    <div class="service-card">
+      <h3>System Maintenance</h3>
+      <p>Regular servicing and troubleshooting to keep your systems running optimally.</p>
+      <div class="service-feature"><i>✓</i> Solar panel cleaning</div>
+      <div class="service-feature"><i>✓</i> Battery health checks</div>
+      <div class="service-feature"><i>✓</i> Performance monitoring</div>
+      <div class="service-feature"><i>✓</i> Emergency repairs</div>
+    </div>
   </div>
 </section>
 
+<!-- Gallery Section -->
 <section id="gallery">
-  <h2>Our Work</h2>
+  <h2>Our Work Gallery</h2>
+  <p style="max-width: 800px; margin: 0 auto 30px; color: #555; text-align: center;">Take a look at some of our completed projects and installations across Nairobi and surrounding areas.</p>
+  
   <div class="gallery-grid">
     <div class="placeholder">
       <img src="solarinstallation1.jpeg" alt="Solar PV Installation">
       <h3>Solar PV Installation</h3>
-      <p>Residential solar backup system.</p>
+      <p>Residential solar backup system installation.</p>
     </div>
+    
     <div class="placeholder">
       <img src="bohole.jpeg" alt="Borehole Solarisation">
       <h3>Borehole Solarisation</h3>
-      <p>Efficient solar water pumping.</p>
+      <p>Efficient solar water pumping system.</p>
     </div>
+    
     <div class="placeholder">
       <img src="elctrical wiring.jpeg" alt="Electrical Wiring">
       <h3>Electrical Wiring</h3>
-      <p>Professional building wiring.</p>
+      <p>Professional building wiring and electrical work.</p>
     </div>
+    
     <div class="placeholder">
-      <img src="maintainance system.jpeg" alt="Solar Maintenance">
+      <img src="maintainance system.jpeg" alt="Solar System Maintenance">
       <h3>System Maintenance</h3>
-      <p>Regular servicing and repair.</p>
+      <p>Regular servicing and repair for optimal performance.</p>
     </div>
+    
     <div class="placeholder">
       <img src="Commercial Solar.jpeg" alt="Commercial Solar">
       <h3>Commercial Solar</h3>
-      <p>Large scale power solutions.</p>
+      <p>Large scale power solutions for businesses.</p>
     </div>
+    
     <div class="placeholder">
       <img src="Battery Backup.jpeg" alt="Battery Backup">
       <h3>Battery Storage</h3>
-      <p>Lithium-ion backup systems.</p>
+      <p>Lithium-ion backup power systems.</p>
     </div>
+    
     <div class="placeholder">
       <img src="Panel Cleaning.jpeg" alt="Panel Cleaning">
       <h3>Panel Cleaning</h3>
-      <p>Routine maintenance for max efficiency.</p>
+      <p>Routine maintenance for maximum efficiency.</p>
     </div>
+    
     <div class="placeholder">
-      <img src="Regular service and repair.jpeg" alt="regular service and repair">
-      <h3>regular service and repair</h3>
-      <p>Outdoor lighting installations.</p>
+      <img src="Regular service and repair.jpeg" alt="Regular Service and Repair">
+      <h3>Regular Service & Repair</h3>
+      <p>Comprehensive maintenance services.</p>
+    </div>
+    
+    <div class="placeholder">
+      <img src="Solar floodlights.jpeg" alt="Solar Floodlights">
+      <h3>Solar Floodlights</h3>
+      <p>Energy-efficient outdoor lighting solutions.</p>
+    </div>
+    
+    <div class="placeholder">
+      <img src="Solar water heaters.jpeg" alt="Solar Water Heaters">
+      <h3>Solar Water Heaters</h3>
+      <p>Hot water systems powered by solar energy.</p>
+    </div>
+    
+    <div class="placeholder">
+      <img src="Borehole solarization.jpeg" alt="Borehole Solarization">
+      <h3>Borehole Solarization</h3>
+      <p>Complete solar-powered water pumping systems.</p>
+    </div>
+    
+    <div class="placeholder">
+      <img src="Electrical installation.jpeg" alt="Electrical Installation">
+      <h3>Electrical Installation</h3>
+      <p>Complete electrical system installations.</p>
+    </div>
+    
+    <div class="placeholder">
+      <img src="Solar Maintenance.jpeg" alt="Solar Maintenance">
+      <h3>Solar Maintenance</h3>
+      <p>Professional solar system servicing.</p>
+    </div>
+    
+   
+    
+    <div class="placeholder">
+      <img src="Street Lighting.jpeg" alt="Street Lighting">
+      <h3>Street Lighting</h3>
+      <p>Solar-powered street lighting installations.</p>
+    </div>
+    
+    <div class="placeholder">
+      <img src="boreholesolarization.jpeg" alt="Borehole Solarization Project">
+      <h3>Borehole Solarization</h3>
+      <p>Solar water pumping solutions.</p>
+    </div>
+    
+    <div class="placeholder">
+      <img src="Digital meters.jpeg" alt="Digital Meters">
+      <h3>Digital Meters</h3>
+      <p>Smart meter installations for energy monitoring.</p>
     </div>
   </div>
 </section>
 
-<section id="service-areas" class="light-bg">
+<!-- Service Areas -->
+<section id="areas" class="light-bg">
   <h2>Service Areas</h2>
-  <p>We provide on-site services across multiple counties in Kenya.</p>
+  <p style="max-width: 800px; margin: 0 auto 30px; color: #555; text-align: center;">We provide on-site services across multiple counties in Kenya. Our service-area business model means we come to you.</p>
+  
   <div class="areas-grid">
     <div>Nairobi</div><div>Kiambu</div><div>Machakos</div><div>Kajiado</div>
     <div>Murang'a</div><div>Nyeri</div><div>Kirinyaga</div><div>Embu</div>
@@ -244,66 +940,187 @@ header .logo {
   </div>
 </section>
 
+<!-- Enhanced Trust Section -->
 <section id="trust">
   <h2>Why Clients Trust Us</h2>
+  <p style="max-width: 800px; margin: 0 auto 30px; color: #555; text-align: center;">We have built our reputation on quality workmanship, reliable service, and customer satisfaction.</p>
+  
   <div class="trust-bar">
-    <div class="trust">✔ Skilled Technicians</div>
-    <div class="trust">✔ Safety Focused</div>
-    <div class="trust">✔ Quality Components</div>
-    <div class="trust">✔ Honest Advice</div>
+    <div class="trust-item">
+      <h4>✔ Skilled & Certified Technicians</h4>
+      <p>Our team consists of licensed electricians and solar technicians with years of hands-on experience and ongoing training in the latest technologies.</p>
+    </div>
+    
+    <div class="trust-item">
+      <h4>✔ Safety-Focused Approach</h4>
+      <p>We prioritize safety in all our installations, following international electrical standards and implementing proper safety protocols on every job site.</p>
+    </div>
+    
+    <div class="trust-item">
+      <h4>✔ Quality Components & Equipment</h4>
+      <p>We source materials from trusted suppliers and use only high-quality, durable components that come with manufacturer warranties for peace of mind.</p>
+    </div>
+    
+    <div class="trust-item">
+      <h4>✔ Honest Advice & Transparent Pricing</h4>
+      <p>We provide clear, upfront pricing with no hidden costs and offer honest recommendations based on your specific needs and budget.</p>
+    </div>
   </div>
 </section>
 
-<section id="about">
+<!-- Enhanced About Section -->
+<section id="about" class="light-bg">
   <h2>About Brian Solar & Electrical</h2>
-  <p><strong>Registered Business Name:</strong> Brian Solar & Electrical<br>
-     <strong>Business Type:</strong> Mobile solar and electrical contractor</p>
-  <p>We combine hands-on experience with technical expertise to deliver safe and reliable installations directly at customer premises.</p>
+  
+  <div class="about-content">
+    <div class="about-feature">
+      <h4>Our Business</h4>
+      <p><strong>Registered Business Name:</strong> Brian Solar & Electrical<br>
+      <strong>Business Type:</strong> Mobile solar and electrical contractor<br>
+      <strong>Service Model:</strong> Service-area business (we work at customer locations)</p>
+      <p>We combine hands-on experience with technical expertise to deliver safe and reliable installations directly at customer premises.</p>
+    </div>
+    
+    <div class="about-feature">
+      <h4>Our Mission</h4>
+      <p>To provide affordable, reliable, and sustainable solar and electrical solutions that empower homes and businesses across Kenya to reduce energy costs and increase energy independence.</p>
+    </div>
+    
+    <div class="about-feature">
+      <h4>Our Values</h4>
+      <p><strong>Quality:</strong> We never compromise on workmanship or materials.<br>
+      <strong>Reliability:</strong> We keep our promises and meet deadlines.<br>
+      <strong>Integrity:</strong> We provide honest advice and transparent pricing.<br>
+      <strong>Customer Focus:</strong> Your satisfaction is our top priority.</p>
+    </div>
+  </div>
+  
+  <div style="background: #fff; padding: 25px; border-radius: 10px; margin-top: 30px; box-shadow: var(--shadow);">
+    <h4 style="color: var(--primary); margin-bottom: 15px;">Why Choose Us?</h4>
+    <p style="color: #555; line-height: 1.7;">With years of experience serving Nairobi and surrounding counties, we understand the unique energy challenges faced by Kenyan homes and businesses. Our service-area business model allows us to provide personalized attention while keeping costs competitive. We're not just installers – we're your energy partners, committed to helping you make the most of your investment in solar and electrical systems.</p>
+  </div>
 </section>
 
-<section id="faq" class="light-bg">
+<!-- Enhanced FAQ Section -->
+<section id="faq">
   <h2>Frequently Asked Questions</h2>
-  <h3>Do you have a physical office?</h3>
-  <p>No. We operate as a service-area business and work directly at customer locations.</p>
-  <h3>Do you supply solar equipment?</h3>
-  <p>Yes. We source quality components from trusted suppliers.</p>
+  <p style="max-width: 800px; margin: 0 auto 30px; color: #555; text-align: center;">Get answers to common questions about our services, processes, and business model.</p>
+  
+  <div class="faq-item">
+    <h3>Do you have a physical office or showroom?</h3>
+    <p>No. We operate as a service-area business and work directly at customer locations. This allows us to keep costs competitive while providing personalized service. We bring samples, equipment, and expertise directly to your site for assessment and consultation.</p>
+  </div>
+  
+  <div class="faq-item">
+    <h3>Do you supply solar equipment and components?</h3>
+    <p>Yes. We source quality components from trusted suppliers and can provide everything needed for your solar or electrical project. We work with reputable brands and ensure all equipment comes with proper warranties and certifications.</p>
+  </div>
+  
+  <div class="faq-item">
+    <h3>How long does a typical solar installation take?</h3>
+    <p>Most residential solar installations are completed within 1-3 days, depending on the system size and complexity. Commercial installations may take longer based on the scale of the project. We provide a clear timeline during the initial consultation.</p>
+  </div>
+  
+  <div class="faq-item">
+    <h3>Do you offer warranties on your work?</h3>
+    <p>Yes. We provide workmanship warranties on our installations, and all equipment comes with manufacturer warranties. Our standard workmanship warranty covers installation for 2 years, while equipment warranties vary by manufacturer (typically 5-25 years).</p>
+  </div>
+  
+  <div class="faq-item">
+    <h3>Can you help with government approvals or permits?</h3>
+    <p>Yes. We assist with the necessary paperwork and approvals required for solar installations, including Energy Regulatory Commission (ERC) approvals where applicable. We guide you through the entire process to ensure compliance with local regulations.</p>
+  </div>
+  
+  <div class="faq-item">
+    <h3>What maintenance do solar systems require?</h3>
+    <p>Solar systems require minimal maintenance, primarily regular cleaning of panels and periodic system checks. We recommend professional maintenance every 6-12 months to ensure optimal performance and early detection of any issues.</p>
+  </div>
 </section>
 
+<!-- Contact Section -->
 <section id="contact">
-  <h2>Contact & Request a Quote</h2>
-  <form action="mailto:info@briansolar.co.ke" method="post" enctype="text/plain" style="max-width:500px;">
-    <label>Name</label><br>
-    <input type="text" name="name" required><br>
-    <label>Phone Number</label><br>
-    <input type="tel" name="phone" required><br>
-    <label>Message</label><br>
-    <textarea name="message" rows="4" required></textarea><br>
+  <h2>Contact Us & Request a Quote</h2>
+  <p style="max-width: 800px; margin: 0 auto 30px; color: #555; text-align: center;">Fill out the form below and we'll get back to you promptly, or contact us directly via phone or WhatsApp.</p>
+  
+  <form action="mailto:info@briansolar.co.ke" method="post" enctype="text/plain">
+    <div class="form-group">
+      <label>Name *</label>
+      <input type="text" name="name" required placeholder="Your full name">
+    </div>
+    
+    <div class="form-group">
+      <label>Phone Number *</label>
+      <input type="tel" name="phone" required placeholder="Your phone number">
+    </div>
+    
+    <div class="form-group">
+      <label>Location/County *</label>
+      <input type="text" name="location" required placeholder="Your location or county">
+    </div>
+    
+    <div class="form-group">
+      <label>Service Needed</label>
+      <select name="service">
+        <option value="Solar Installation">Solar Installation</option>
+        <option value="Borehole Solarisation">Borehole Solarisation</option>
+        <option value="Electrical Work">Electrical Work</option>
+        <option value="Maintenance/Repair">Maintenance/Repair</option>
+        <option value="Consultation">Consultation/Quote</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label>Message *</label>
+      <textarea name="message" rows="5" required placeholder="Please describe your project requirements..."></textarea>
+    </div>
+    
     <button type="submit">Send Request</button>
   </form>
-  <p style="margin-top:20px;">📞 0768463203 | 📧 info@briansolar.co.ke | 💬 <a href="https://wa.me/254768463203">WhatsApp</a></p>
-  <p><strong>Operating Hours:</strong> Mon – Sat: 8:00 AM – 6:00 PM</p>
+  
+  <div style="margin-top: 40px; text-align: center;">
+    <h3>Direct Contact</h3>
+    <p style="margin: 15px 0;"><strong>📞 Phone:</strong> 0768463203</p>
+    <p style="margin: 15px 0;"><strong>📧 Email:</strong> info@briansolar.co.ke</p>
+    <p style="margin: 15px 0;"><strong>💬 WhatsApp:</strong> <a href="https://wa.me/254768463203">+254 768 463 203</a></p>
+    <p style="margin: 15px 0;"><strong>🕘 Operating Hours:</strong> Monday - Saturday: 8:00 AM – 6:00 PM</p>
+    <p style="margin: 15px 0; color: #666;"><em>Emergency services available outside normal hours</em></p>
+  </div>
 </section>
 
+<!-- Footer -->
 <footer>
   <div class="footer-grid">
-    <div>
+    <div class="footer-col">
       <h3>Brian Solar & Electrical</h3>
-      <p>Professional solar and electrical services across Kenya.</p>
+      <p>Professional solar and electrical services across Kenya. We bring expertise directly to your location. Serving Nairobi and surrounding counties since establishment.</p>
     </div>
-    <div>
+    
+    <div class="footer-col">
       <h3>Quick Links</h3>
       <p>
         <a href="#home">Home</a><br>
         <a href="#services">Services</a><br>
-        <a href="#gallery">Gallery</a>
+        <a href="#gallery">Gallery</a><br>
+        <a href="#faq">FAQ</a><br>
+        <a href="#contact">Contact</a>
       </p>
     </div>
+    
+    <div class="footer-col">
+      <h3>Contact Info</h3>
+      <p><strong>Phone:</strong> 0768463203<br>
+      <strong>Email:</strong> info@briansolar.co.ke<br>
+      <strong>Service Area:</strong> Nairobi & Surrounding Counties<br>
+      <strong>Business Hours:</strong> Mon-Sat: 8AM-6PM</p>
+    </div>
   </div>
-  <p class="small">© 2026 Brian Solar & Electrical. All rights reserved.</p>
+  
+  <p class="small">© 2026 Brian Solar & Electrical. All rights reserved. | Professional solar installation, electrical services & borehole solarisation in Nairobi, Kenya.</p>
 </footer>
 
-<a href="https://wa.me/254768463203" target="_blank" style="position:fixed; bottom:90px; right:20px; background:#25D366; color:#fff; width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:26px; text-decoration:none; box-shadow:0 4px 10px rgba(0,0,0,0.3); z-index:999;">💬</a>
-<a href="tel:+254768463203" style="position:fixed; bottom:20px; right:20px; background:#0b4da2; color:#fff; width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:26px; text-decoration:none; box-shadow:0 4px 10px rgba(0,0,0,0.3); z-index:999;">📞</a>
+<!-- Floating Buttons -->
+<a href="https://wa.me/254768463203" target="_blank" class="float-btn whatsapp-btn">💬</a>
+<a href="tel:+254768463203" class="float-btn call-btn">📞</a>
 
 </body>
 </html>
