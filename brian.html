@@ -15,14 +15,14 @@
     }
     body{font-family:'Segoe UI',Arial,sans-serif;margin:0;line-height:1.7;color:#333;background:#fff}
     
-  /* Optimized Header & Logo */
+
 header.hero {
   position: relative;
   background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('hero.jpeg');
   background-size: cover;
   background-position: center;
   color: #fff;
-  padding: 80px 20px 50px 20px; /* Increased top padding to accommodate logo */
+  padding: 80px 20px 50px 20px;
   display: flex;
   flex-direction: column; 
   align-items: center; 
@@ -34,7 +34,7 @@ header .logo {
   position: absolute;
   top: 15px;
   left: 15px;
-  max-width: 120px; /* Reduced desktop size */
+  max-width: 120px; 
   height: auto;
   background: rgba(255,255,255,0.95);
   padding: 6px;
@@ -43,27 +43,27 @@ header .logo {
   z-index: 10;
 }
 
-/* Mobile-Specific Fix */
+
 @media (max-width: 600px) {
   header .logo {
-    max-width: 90px; /* Smaller, cleaner logo on phones */
+    max-width: 90px; 
     top: 10px;
     left: 10px;
     padding: 4px;
   }
   
   header.hero {
-    padding-top: 70px; /* Adjusts section height for the smaller logo */
+    padding-top: 70px; 
     min-height: 250px;
   }
 
   .hero h1 {
-    font-size: 1.6rem; /* Keeps headline from hitting the logo */
+    font-size: 1.6rem; 
     margin-top: 10px;
   }
 }
 
-/* Original P and CTA sizes as requested */
+
 .hero p {
   max-width: 700px;
   margin: 10px auto;
@@ -94,7 +94,7 @@ header .logo {
     
     .services-grid, .areas-grid, .gallery-grid, .trust-bar {display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:25px; margin-top:20px;}
     
-    /* Gallery & Card Alignment */
+   
     .placeholder, .service-card, .trust, .areas-grid div {
       background:#fff; 
       padding:20px; 
@@ -105,8 +105,8 @@ header .logo {
 
     .placeholder img {
       width: 100%;
-      height: 250px; /* Consistent height for all images */
-      object-fit: cover; /* Prevents stretching */
+      height: 250px; 
+      object-fit: cover;
       border-radius: 12px;
       margin-bottom: 15px;
     }
@@ -226,8 +226,8 @@ header .logo {
       <p>Routine maintenance for max efficiency.</p>
     </div>
     <div class="placeholder">
-      <img src="Street Lighting.jpeg" alt="Street Lighting">
-      <h3>Solar Street Lights</h3>
+      <img src="Regular service and repair.jpeg" alt="regular service and repair">
+      <h3>regular service and repair</h3>
       <p>Outdoor lighting installations.</p>
     </div>
   </div>
