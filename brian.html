@@ -115,7 +115,7 @@
       background-color: #e68900;
     }
     
-    /* Hero Section - MINIMIZED */
+    /* UPDATED Hero Section - Optimized for Mobile */
     header.hero {
       position: relative;
       background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('hero.jpeg');
@@ -123,15 +123,15 @@
       background-position: center;
       background-attachment: scroll;
       color: #fff;
-      padding: 50px 20px 30px;
+      padding: 60px 20px 40px; /* Increased padding */
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      min-height: 380px;
+      min-height: 420px; /* Increased height */
     }
     
-    /* ENHANCED Logo Styling - Visible on All Devices */
+    /* Enhanced Logo Styling - Always Visible */
     .hero .logo-container {
       position: absolute;
       top: 15px;
@@ -178,22 +178,23 @@
       z-index: 2;
       max-width: 800px;
       width: 100%;
-      margin-top: 10px;
+      margin-top: 30px; /* Increased margin */
     }
     
     .hero h1 {
       color: #fff;
       font-size: 2rem;
-      margin: 15px 0 10px;
+      margin: 20px 0 15px; /* Increased margins */
       text-shadow: 0 3px 12px rgba(0,0,0,0.6);
       animation: slideDown 0.8s ease-out;
+      line-height: 1.3; /* Added line-height */
     }
     
     .hero p {
       color: #f8f8f8;
       font-size: 1.05rem;
       max-width: 700px;
-      margin: 0 auto 20px;
+      margin: 0 auto 25px; /* Increased margin */
       line-height: 1.6;
       text-shadow: 0 2px 5px rgba(0,0,0,0.5);
       animation: fadeIn 1s ease-out 0.2s both;
@@ -214,7 +215,7 @@
       flex-wrap: wrap;
       gap: 12px;
       justify-content: center;
-      margin-top: 15px;
+      margin-top: 20px; /* Increased margin */
       animation: fadeIn 1s ease-out 0.4s both;
     }
     
@@ -604,7 +605,7 @@
       background: #0b4da2;
     }
     
-    /* Mobile Responsiveness - ENHANCED for Logo Visibility */
+    /* Mobile Responsiveness - ENHANCED for Hero Section */
     @media (max-width: 992px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1.8rem; }
@@ -645,13 +646,13 @@
         padding: 50px 20px;
       }
       
-      /* MINIMIZED Hero for Mobile */
+      /* UPDATED Hero for Tablet */
       header.hero {
-        padding: 45px 20px 25px;
-        min-height: 350px;
+        padding: 70px 20px 40px; /* Increased padding for tablet */
+        min-height: 400px; /* Increased height */
       }
       
-      /* ENHANCED Logo for Mobile */
+      /* Enhanced Logo for Tablet */
       .hero .logo-container {
         top: 12px;
         left: 12px;
@@ -670,13 +671,14 @@
       }
       
       .hero h1 {
-        font-size: 1.6rem;
-        margin: 10px 0;
+        font-size: 1.7rem; /* Slightly larger for tablet */
+        margin: 15px 0;
+        line-height: 1.3;
       }
       
       .hero p {
         font-size: 0.95rem;
-        margin-bottom: 15px;
+        margin-bottom: 20px; /* Increased margin */
       }
       
       .cta-btn {
@@ -720,13 +722,13 @@
     }
     
     @media (max-width: 480px) {
-      /* FURTHER MINIMIZED Hero for Small Phones */
+      /* UPDATED Hero for Mobile Phones */
       header.hero {
-        padding: 40px 15px 20px;
-        min-height: 320px;
+        padding: 80px 15px 35px; /* Increased top padding for logo space */
+        min-height: 420px; /* Increased height for mobile */
       }
       
-      /* HIGHLY VISIBLE Logo for Small Phones */
+      /* Highly Visible Logo for Mobile */
       .hero .logo-container {
         top: 10px;
         left: 10px;
@@ -736,7 +738,7 @@
           0 6px 20px rgba(0,0,0,0.5),
           0 0 0 3px var(--primary),
           0 0 0 6px rgba(255,255,255,0.5);
-        position: fixed; /* Make it fixed so it stays visible while scrolling */
+        position: absolute; /* Changed from fixed to absolute */
       }
       
       .hero .logo-img {
@@ -745,14 +747,16 @@
       }
       
       .hero h1 {
-        font-size: 1.5rem;
-        margin: 8px 0;
-        padding-top: 20px; /* Add padding to account for fixed logo */
+        font-size: 1.6rem; /* Optimized font size */
+        margin: 10px 0 12px;
+        line-height: 1.3;
+        padding-top: 0; /* Removed padding */
       }
       
       .hero p {
-        font-size: 0.9rem;
-        margin-bottom: 12px;
+        font-size: 0.92rem; /* Slightly larger font */
+        margin-bottom: 18px;
+        line-height: 1.5;
       }
       
       nav {
@@ -770,16 +774,16 @@
         align-items: center;
         width: 100%;
         max-width: 280px;
-        margin: 12px auto 0;
+        margin: 15px auto 0; /* Increased margin */
       }
       
       .cta-btn {
         width: 100%;
         max-width: 260px;
         text-align: center;
-        margin: 4px 0;
-        padding: 10px 20px;
-        font-size: 0.85rem;
+        margin: 5px 0; /* Increased margin */
+        padding: 12px 20px; /* Increased padding */
+        font-size: 0.9rem;
       }
       
       .services-grid, .gallery-grid, .service-landing-cards {
@@ -820,10 +824,10 @@
     }
     
     @media (max-width: 360px) {
-      /* Extra small phones */
+      /* Extra small phones - Further Optimized */
       header.hero {
-        padding: 35px 10px 15px;
-        min-height: 300px;
+        padding: 70px 10px 25px; /* Adjusted padding */
+        min-height: 400px; /* Maintained height */
       }
       
       .hero .logo-container {
@@ -838,11 +842,18 @@
       }
       
       .hero h1 {
-        font-size: 1.4rem;
-        padding-top: 25px;
+        font-size: 1.5rem; /* Adjusted font size */
+        margin: 8px 0 10px;
+        line-height: 1.3;
       }
       
       .hero p {
+        font-size: 0.88rem; /* Slightly smaller but readable */
+        margin-bottom: 16px;
+      }
+      
+      .cta-btn {
+        padding: 11px 18px;
         font-size: 0.85rem;
       }
     }
