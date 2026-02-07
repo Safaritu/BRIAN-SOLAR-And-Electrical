@@ -1,563 +1,388 @@
-<binary>
-  <!-- 
-    Binary Bot for Deriv.com
-    Created from third-party bot conversion
-    Martingale strategy for Digits Matches/Differs
-  -->
-  
-  <trade
-    name="Martingale Digits Bot"
-    description="Martingale strategy for R_50 with recovery mode"
-    icon="trending_up"
-    version="1.0"
-  >
-  
-  <settings>
-    <general>
-      <duration type="t">1</duration>
-      <stake>6</stake>
-      <currency>USD</currency>
-      <prediction>1</prediction>
-      <basis>stake</basis>
-    </general>
-    
-    <symbol>
-      <market>synthetic_index</market>
-      <submarket>random_index</submarket>
-      <symbol>R_50</symbol>
-    </symbol>
-    
-    <contract>
-      <type>matchesdiffers</type>
-      <category>digits</category>
-    </contract>
-    
-    <trading>
-      <max_trades>100</max_trades>
-      <restart_on_error>true</restart_on_error>
-    </trading>
-  </settings>
-
-  <blocks>
-    <block type="trade_definition" id="main_trade" x="50" y="50">
-      <field name="MARKET_LIST">synthetic_index</field>
-      <field name="SUBMARKET_LIST">random_index</field>
-      <field name="SYMBOL_LIST">R_50</field>
-      <field name="TRADETYPECAT_LIST">digits</field>
-      <field name="TRADETYPE_LIST">matchesdiffers</field>
-      <field name="TRADE_EACH_TICK">FALSE</field>
-      <statement name="INITIALIZATION">
-        <block type="variables_set">
-          <field name="VAR" id="stake">stake</field>
-          <value name="VALUE">
-            <block type="math_number">
-              <field name="NUM">6</field>
-            </block>
-          </value>
-          <next>
-            <block type="variables_set">
-              <field name="VAR" id="take_profit">take_profit</field>
-              <value name="VALUE">
-                <block type="math_number">
-                  <field name="NUM">5</field>
-                </block>
-              </value>
-              <next>
-                <block type="variables_set">
-                  <field name="VAR" id="stop_loss">stop_loss</field>
-                  <value name="VALUE">
-                    <block type="math_number">
-                      <field name="NUM">30</field>
-                    </block>
-                  </value>
-                  <next>
-                    <block type="variables_set">
-                      <field name="VAR" id="martingale">martingale</field>
-                      <value name="VALUE">
-                        <block type="math_number">
-                          <field name="NUM">2</field>
-                        </block>
-                      </value>
-                      <next>
-                        <block type="variables_set">
-                          <field name="VAR" id="recovery_mode">recovery_mode</field>
-                          <value name="VALUE">
-                            <block type="logic_boolean">
-                              <field name="BOOL">FALSE</field>
-                            </block>
-                          </value>
-                          <next>
-                            <block type="variables_set">
-                              <field name="VAR" id="initial_stake">initial_stake</field>
-                              <value name="VALUE">
-                                <block type="math_number">
-                                  <field name="NUM">6</field>
-                                </block>
-                              </value>
-                              <next>
-                                <block type="variables_set">
-                                  <field name="VAR" id="next_trade">next_trade</field>
-                                  <value name="VALUE">
-                                    <block type="text">
-                                      <field name="TEXT">UNDER</field>
-                                    </block>
-                                  </value>
-                                </block>
-                              </next>
-                            </block>
-                          </next>
-                        </block>
-                      </next>
-                    </block>
-                  </next>
-                </block>
-              </next>
-            </block>
-          </next>
-        </block>
-      </statement>
-    </block>
-    
-    <block type="before_purchase" id="before_purchase_block" x="50" y="300">
-      <statement name="BEFOREPURCHASE_STACK">
-        <block type="controls_if">
-          <mutation else="1"></mutation>
-          <value name="IF0">
-            <block type="logic_compare">
-              <field name="OP">EQ</field>
-              <value name="A">
-                <block type="variables_get">
-                  <field name="VAR" id="recovery_mode">recovery_mode</field>
-                </block>
-              </value>
-              <value name="B">
-                <block type="logic_boolean">
-                  <field name="BOOL">FALSE</field>
-                </block>
-              </value>
-            </block>
-          </value>
-          <statement name="DO0">
-            <!-- Normal Trading Mode -->
-            <block type="controls_if">
-              <value name="IF0">
-                <block type="last_digits_condition">
-                  <field name="CONDITION">ALL_SAME</field>
-                  <value name="N">
-                    <shadow type="math_number">
-                      <field name="NUM">2</field>
-                    </shadow>
-                    <block type="math_number">
-                      <field name="NUM">2</field>
-                    </block>
-                  </value>
-                </block>
-              </value>
-              <statement name="DO0">
-                <block type="variables_set">
-                  <field name="VAR" id="prediction">prediction</field>
-                  <value name="VALUE">
-                    <block type="last_digit"></block>
-                  </value>
-                </block>
-              </statement>
-              <next>
-                <block type="trade_definition_tradeoptions">
-                  <field name="DURATIONTYPE_LIST">t</field>
-                  <field name="TRADE_EACH_TICK">FALSE</field>
-                  <value name="DURATION">
-                    <shadow type="math_number">
-                      <field name="NUM">1</field>
-                    </shadow>
-                  </value>
-                  <value name="AMOUNT">
-                    <shadow type="math_number">
-                      <field name="NUM">6</field>
-                    </shadow>
-                    <block type="variables_get">
-                      <field name="VAR" id="stake">stake</field>
-                    </block>
-                  </value>
-                  <value name="PREDICTION">
-                    <shadow type="math_number">
-                      <field name="NUM">1</field>
-                    </shadow>
-                    <block type="variables_get">
-                      <field name="VAR" id="prediction">prediction</field>
-                    </block>
-                  </value>
-                </block>
-              </next>
-            </block>
-          </statement>
-          <statement name="ELSE">
-            <!-- Recovery Mode -->
-            <block type="controls_if">
-              <mutation elseif="1"></mutation>
-              <value name="IF0">
-                <block type="last_digits_condition">
-                  <field name="CONDITION">ALL_EVEN</field>
-                  <value name="N">
-                    <shadow type="math_number">
-                      <field name="NUM">5</field>
-                    </shadow>
-                    <block type="math_number">
-                      <field name="NUM">5</field>
-                    </block>
-                  </value>
-                </block>
-              </value>
-              <statement name="DO0">
-                <block type="trade_definition_tradeoptions">
-                  <field name="DURATIONTYPE_LIST">t</field>
-                  <field name="TRADE_EACH_TICK">FALSE</field>
-                  <field name="TRADETYPE_LIST">digitodd</field>
-                  <value name="DURATION">
-                    <shadow type="math_number">
-                      <field name="NUM">1</field>
-                    </shadow>
-                  </value>
-                  <value name="AMOUNT">
-                    <shadow type="math_number">
-                      <field name="NUM">6</field>
-                    </shadow>
-                    <block type="variables_get">
-                      <field name="VAR" id="stake">stake</field>
-                    </block>
-                  </value>
-                  <value name="PREDICTION">
-                    <shadow type="math_number">
-                      <field name="NUM">1</field>
-                    </shadow>
-                    <block type="math_number">
-                      <field name="NUM">1</field>
-                    </block>
-                  </value>
-                </block>
-              </statement>
-              <value name="IF1">
-                <block type="last_digits_condition">
-                  <field name="CONDITION">ALL_ODD</field>
-                  <value name="N">
-                    <shadow type="math_number">
-                      <field name="NUM">5</field>
-                    </shadow>
-                    <block type="math_number">
-                      <field name="NUM">5</field>
-                    </block>
-                  </value>
-                </block>
-              </value>
-              <statement name="DO1">
-                <block type="trade_definition_tradeoptions">
-                  <field name="DURATIONTYPE_LIST">t</field>
-                  <field name="TRADE_EACH_TICK">FALSE</field>
-                  <field name="TRADETYPECAT_LIST">callput</field>
-                  <field name="TRADETYPE_LIST">put</field>
-                  <value name="DURATION">
-                    <shadow type="math_number">
-                      <field name="NUM">1</field>
-                    </shadow>
-                  </value>
-                  <value name="AMOUNT">
-                    <shadow type="math_number">
-                      <field name="NUM">6</field>
-                    </shadow>
-                    <block type="variables_get">
-                      <field name="VAR" id="stake">stake</field>
-                    </block>
-                  </value>
-                  <value name="PREDICTION">
-                    <shadow type="math_number">
-                      <field name="NUM">1</field>
-                    </shadow>
-                    <block type="math_number">
-                      <field name="NUM">1</field>
-                    </block>
-                  </value>
-                </block>
-              </statement>
-            </block>
-          </statement>
-        </block>
-      </statement>
-    </block>
-    
-    <block type="after_purchase" id="after_purchase_block" x="50" y="600">
-      <statement name="AFTERPURCHASE_STACK">
-        <block type="controls_if">
-          <mutation else="1"></mutation>
-          <value name="IF0">
-            <block type="contract_check_result">
-              <field name="CHECK_RESULT">win</field>
-            </block>
-          </value>
-          <statement name="DO0">
-            <!-- Win Handling -->
-            <block type="variables_set">
-              <field name="VAR" id="recovery_mode">recovery_mode</field>
-              <value name="VALUE">
-                <block type="logic_boolean">
-                  <field name="BOOL">FALSE</field>
-                </block>
-              </value>
-              <next>
-                <block type="variables_set">
-                  <field name="VAR" id="stake">stake</field>
-                  <value name="VALUE">
-                    <block type="variables_get">
-                      <field name="VAR" id="initial_stake">initial_stake</field>
-                    </block>
-                  </value>
-                </block>
-              </next>
-            </block>
-          </statement>
-          <statement name="ELSE">
-            <!-- Loss Handling -->
-            <block type="variables_set">
-              <field name="VAR" id="stake">stake</field>
-              <value name="VALUE">
-                <block type="math_arithmetic">
-                  <field name="OP">MULTIPLY</field>
-                  <value name="A">
-                    <shadow type="math_number">
-                      <field name="NUM">1</field>
-                    </shadow>
-                    <block type="variables_get">
-                      <field name="VAR" id="stake">stake</field>
-                    </block>
-                  </value>
-                  <value name="B">
-                    <shadow type="math_number">
-                      <field name="NUM">1</field>
-                    </shadow>
-                    <block type="variables_get">
-                      <field name="VAR" id="martingale">martingale</field>
-                    </block>
-                  </value>
-                </block>
-              </value>
-              <next>
-                <block type="variables_set">
-                  <field name="VAR" id="recovery_mode">recovery_mode</field>
-                  <value name="VALUE">
-                    <block type="logic_boolean">
-                      <field name="BOOL">TRUE</field>
-                    </block>
-                  </value>
-                </block>
-              </next>
-            </block>
-          </statement>
-          <next>
-            <!-- Check Profit/Loss Conditions -->
-            <block type="controls_if">
-              <mutation elseif="1" else="1"></mutation>
-              <value name="IF0">
-                <block type="logic_compare">
-                  <field name="OP">GTE</field>
-                  <value name="A">
-                    <block type="total_profit"></block>
-                  </value>
-                  <value name="B">
-                    <block type="variables_get">
-                      <field name="VAR" id="take_profit">take_profit</field>
-                    </block>
-                  </value>
-                </block>
-              </value>
-              <statement name="DO0">
-                <!-- Take Profit Hit -->
-                <block type="text_print">
-                  <value name="TEXT">
-                    <shadow type="text">
-                      <field name="TEXT">🎯 TAKE PROFIT HIT! Stopping bot.</field>
-                    </shadow>
-                  </value>
-                </block>
-                <block type="controls_flow_statements">
-                  <field name="FLOW">STOP</field>
-                </block>
-              </statement>
-              <value name="IF1">
-                <block type="logic_compare">
-                  <field name="OP">LTE</field>
-                  <value name="A">
-                    <block type="total_profit"></block>
-                  </value>
-                  <value name="B">
-                    <block type="math_single">
-                      <field name="OP">NEG</field>
-                      <value name="NUM">
-                        <shadow type="math_number">
-                          <field name="NUM">30</field>
-                        </shadow>
-                        <block type="variables_get">
-                          <field name="VAR" id="stop_loss">stop_loss</field>
-                        </block>
-                      </value>
-                    </block>
-                  </value>
-                </block>
-              </value>
-              <statement name="DO1">
-                <!-- Stop Loss Hit -->
-                <block type="text_print">
-                  <value name="TEXT">
-                    <shadow type="text">
-                      <field name="TEXT">🚫 STOP LOSS HIT! Stopping bot.</field>
-                    </shadow>
-                  </value>
-                </block>
-                <block type="controls_flow_statements">
-                  <field name="FLOW">STOP</field>
-                </block>
-              </statement>
-              <statement name="ELSE">
-                <!-- Continue Trading -->
-                <block type="trade_again"></block>
-              </statement>
-            </block>
-          </next>
-        </block>
-      </statement>
-    </block>
-  </blocks>
-
-  <javascript>
-<![CDATA[
-// JavaScript section for advanced logic
-// This code runs alongside the blockly logic
-
-// Global variables accessible in both XML and JS
-let botState = {
-    totalTrades: 0,
-    consecutiveWins: 0,
-    consecutiveLosses: 0,
-    maxLossStreak: 0,
-    totalProfit: 0,
-    isRunning: true
-};
-
-// Function to calculate safe stake based on balance
-function calculateSafeStake(currentStake, balance) {
-    // Don't risk more than 5% of balance on single trade
-    const maxRisk = balance * 0.05;
-    return Math.min(currentStake, maxRisk);
-}
-
-// Enhanced prediction algorithm
-function enhancedPrediction(lastDigits) {
-    if (lastDigits.length < 5) return 1;
-    
-    // Check for patterns in last digits
-    const frequencies = {};
-    lastDigits.forEach(digit => {
-        frequencies[digit] = (frequencies[digit] || 0) + 1;
-    });
-    
-    // Find most frequent digit
-    let mostFrequent = 1;
-    let maxCount = 0;
-    for (const [digit, count] of Object.entries(frequencies)) {
-        if (count > maxCount) {
-            maxCount = count;
-            mostFrequent = parseInt(digit);
-        }
-    }
-    
-    return mostFrequent;
-}
-
-// Risk management function
-function shouldSkipTrade(currentStake, balance, consecutiveLosses) {
-    // Skip if stake too high relative to balance
-    if (currentStake > balance * 0.1) {
-        console.log("Skipping trade: Stake too high relative to balance");
-        return true;
-    }
-    
-    // Skip after too many consecutive losses
-    if (consecutiveLosses >= 5) {
-        console.log("Skipping trade: Too many consecutive losses");
-        return true;
-    }
-    
-    return false;
-}
-
-// Logging function
-function logTrade(result, stake, prediction) {
-    const timestamp = new Date().toISOString();
-    const logEntry = {
-        timestamp: timestamp,
-        result: result ? "WIN" : "LOSS",
-        stake: stake,
-        prediction: prediction,
-        profit: result ? stake * 0.95 : -stake,
-        totalProfit: botState.totalProfit
-    };
-    
-    console.log("Trade Log:", JSON.stringify(logEntry));
-    
-    // Store in global variable for access in blocks
-    Bot.setGlobal("last_trade_log", logEntry);
-}
-
-// Initialize bot when loaded
-function initBot() {
-    console.log("🚀 Martingale Digits Bot Initialized");
-    console.log("Version: 1.0");
-    console.log("Strategy: Martingale with Recovery Mode");
-    console.log("Symbol: R_50");
-    console.log("Initial Stake: $6");
-    console.log("Take Profit: $5");
-    console.log("Stop Loss: $30");
-    console.log("Martingale Multiplier: 2x");
-    
-    // Set initial global variables
-    Bot.setGlobal("bot_initialized", true);
-    Bot.setGlobal("start_time", new Date().toISOString());
-    
-    return true;
-}
-
-// Cleanup function when bot stops
-function cleanupBot() {
-    console.log("🤖 Bot Stopping - Final Report:");
-    console.log("Total Trades:", botState.totalTrades);
-    console.log("Total Profit:", botState.totalProfit.toFixed(2));
-    console.log("Max Loss Streak:", botState.maxLossStreak);
-    console.log("Final Status:", botState.totalProfit >= 0 ? "PROFIT" : "LOSS");
-    
-    Bot.setGlobal("bot_finished", true);
-    Bot.setGlobal("end_time", new Date().toISOString());
-}
-
-// Call initialization on bot start
-initBot();
-]]>
-  </javascript>
-
-  <style>
-    .bot-title {
-      color: #4CAF50;
-      font-size: 18px;
-      font-weight: bold;
-    }
-    
-    .profit-positive {
-      color: #4CAF50;
-    }
-    
-    .profit-negative {
-      color: #F44336;
-    }
-    
-    .warning {
-      color: #FF9800;
-    }
-  </style>
-</trade>
-</binary>
+<?xml version="1.0" encoding="UTF-8"?>
+<blockly>
+<variables>
+<variable id="stake">Stake</variable>
+<variable id="take_profit">Take Profit</variable>
+<variable id="stop_loss">Stop Loss</variable>
+<variable id="martingale">Martingale</variable>
+<variable id="recovery_mode">Recovery Mode</variable>
+<variable id="initial_stake">Initial Stake</variable>
+<variable id="next_trade">Next Trade</variable>
+<variable id="prediction">Prediction</variable>
+</variables>
+<block type="trade_definition" id="O6MMv^QZ/ymGoC,i:3UU" x="13" y="13">
+<field name="MARKET_LIST">synthetic_index</field>
+<field name="SUBMARKET_LIST">random_index</field>
+<field name="SYMBOL_LIST">R_50</field>
+<statement name="INITIALIZATION">
+<block type="variables_set" id="VJ*5e-s~E@%w{9k9x5@.">
+<field name="VAR" id="stake">Stake</field>
+<value name="VALUE">
+<block type="math_number" id="jQh5OphY^,W|@f5v)`P6">
+<field name="NUM">6</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="(n5#+T|5#)Q%$F8!D):0">
+<field name="VAR" id="take_profit">Take Profit</field>
+<value name="VALUE">
+<block type="math_number" id=":l{ekx`]Pr*8Oe6i[Tj(">
+<field name="NUM">5</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="6;@DgV?`4El_ufX{C0n+">
+<field name="VAR" id="stop_loss">Stop Loss</field>
+<value name="VALUE">
+<block type="math_number" id="B:FXf:SO)X8%C}%R.`T*">
+<field name="NUM">30</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="1T_g?kqj%W.QG8K~qC9`">
+<field name="VAR" id="martingale">Martingale</field>
+<value name="VALUE">
+<block type="math_number" id="v(}t5Lh8kO%!|@!i8j?`">
+<field name="NUM">2</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="|U!tJCx}G+hJgRkU#4H4">
+<field name="VAR" id="recovery_mode">Recovery Mode</field>
+<value name="VALUE">
+<block type="logic_boolean" id="(ELTl~U%9jH+8`4^|Q;c">
+<field name="BOOL">FALSE</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="eW`h6iN~$r+Z3U9G~h~?">
+<field name="VAR" id="initial_stake">Initial Stake</field>
+<value name="VALUE">
+<block type="math_number" id="z_i2!JGW[!;|Q2~P;U+K">
+<field name="NUM">6</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id=";T.q+INr!R@1?H6{=F1A">
+<field name="VAR" id="next_trade">Next Trade</field>
+<value name="VALUE">
+<block type="text" id="KZ3v(nJP5:pHm%`E@U#R">
+<field name="TEXT">UNDER</field>
+</block>
+</value>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+<statement name="SUBMARKET">
+<block type="trade_definition_tradeoptions" id=":m]m!8W]M[k}(6;N~sP1">
+<field name="TRADETYPECAT_LIST">digits</field>
+<field name="TRADETYPE_LIST">matchesdiffers</field>
+<field name="DURATIONTYPE_LIST">t</field>
+<field name="DURATION">1</field>
+<value name="AMOUNT">
+<shadow type="math_number" id="X*L9]r;lD(yN3TjYHS;Q">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="_eMx/PsJg@;VxS^uF?AQ">
+<field name="VAR" id="stake">Stake</field>
+</block>
+</value>
+<value name="PREDICTION">
+<shadow type="math_number" id="b_j8|i5H~HX?{(f]?QZx">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="(5z*|N2~v%Wn@J6e1)6q">
+<field name="VAR" id="prediction">Prediction</field>
+</block>
+</value>
+</block>
+</statement>
+</block>
+<block type="before_purchase" id="@]z;W6MVm?`(j%J9*6L~" x="13" y="388">
+<statement name="BEFOREPURCHASE_STACK">
+<block type="controls_if" id="p6W$~e!Xa]l9UQNqS]T{">
+<mutation else="1"></mutation>
+<value name="IF0">
+<block type="logic_compare" id="3f0;u;Z%Y)Q!LzqYQeZV">
+<field name="OP">EQ</field>
+<value name="A">
+<block type="variables_get" id="6O3vA/s/Aog~;J3`xYc^">
+<field name="VAR" id="recovery_mode">Recovery Mode</field>
+</block>
+</value>
+<value name="B">
+<block type="logic_boolean" id="?M:b@^Z_q|qhJ-QT0F3L">
+<field name="BOOL">FALSE</field>
+</block>
+</value>
+</block>
+</value>
+<statement name="DO0">
+<block type="controls_if" id="LQyA%7#CR!DSZtB?D|ZY">
+<value name="IF0">
+<block type="last_digits_condition" id="h!kYQz8n*4)}d)@}TW@]">
+<field name="CONDITION">ALL_SAME</field>
+<value name="N">
+<shadow type="math_number" id="zuwu0(5n[j!J+K`sM}I^">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_number" id="p|q1h}_1X8L?J(`PHD$A">
+<field name="NUM">2</field>
+</block>
+</value>
+</block>
+</value>
+<statement name="DO0">
+<block type="variables_set" id="a~a!2(Dx}^(;E~U#q`d*">
+<field name="VAR" id="prediction">Prediction</field>
+<value name="VALUE">
+<block type="last_digit" id="wJ^3Z;5^J!lC*_4@*1nW"></block>
+</value>
+</block>
+</statement>
+</block>
+</statement>
+<statement name="ELSE">
+<block type="controls_if" id="B/B%@wZ7/M[(U*K7%euw">
+<mutation elseif="1"></mutation>
+<value name="IF0">
+<block type="last_digits_condition" id="8.bbj:KfVWg]d/Id5m9e">
+<field name="CONDITION">ALL_EVEN</field>
+<value name="N">
+<shadow type="math_number" id="1;G%;.K%)!lJ}OP$h~K^">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_number" id="4#]5]7A%Y3F!~}a?y)WG">
+<field name="NUM">5</field>
+</block>
+</value>
+</block>
+</value>
+<statement name="DO0">
+<block type="variables_set" id="W=vZ$Z8;)?z%CQ=)@dFJ">
+<field name="VAR" id="prediction">Prediction</field>
+<value name="VALUE">
+<block type="math_number" id="Yb8*af{4B}H#uS]:d+_p">
+<field name="NUM">1</field>
+</block>
+</value>
+</block>
+<block type="trade_definition_tradeoptions" id="H;SYl.%(%1Y8%!F7`#Hs">
+<field name="TRADETYPECAT_LIST">digits</field>
+<field name="TRADETYPE_LIST">digitodd</field>
+<field name="DURATIONTYPE_LIST">t</field>
+<field name="DURATION">1</field>
+<value name="AMOUNT">
+<shadow type="math_number" id="}2s6E,LTGr,GeiQ`K|eO">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="+T{6`wUj][fE%NTM{xS@">
+<field name="VAR" id="stake">Stake</field>
+</block>
+</value>
+<value name="PREDICTION">
+<shadow type="math_number" id="W?%Z/!y(%tL`eS~aK:=j">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_number" id="A*~:;~QSU7a]L.0*8a9n">
+<field name="NUM">1</field>
+</block>
+</value>
+</block>
+</statement>
+<value name="IF1">
+<block type="last_digits_condition" id="%s]M`sH{Oj?}mG$8%40]">
+<field name="CONDITION">ALL_ODD</field>
+<value name="N">
+<shadow type="math_number" id="8{4w8SgFk.D[5]19XZ@L">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_number" id="R3`QxWU)/2(Wo%}G^x?0">
+<field name="NUM">5</field>
+</block>
+</value>
+</block>
+</value>
+<statement name="DO1">
+<block type="variables_set" id="}Hox7U4};OqS+=1GQ7cY">
+<field name="VAR" id="prediction">Prediction</field>
+<value name="VALUE">
+<block type="math_number" id="Q`T.8^C?]t(xBv]%?V6b">
+<field name="NUM">1</field>
+</block>
+</value>
+</block>
+<block type="trade_definition_tradeoptions" id="uSqE-|vj!jO{PFg;ScT(">
+<field name="TRADETYPECAT_LIST">callput</field>
+<field name="TRADETYPE_LIST">put</field>
+<field name="DURATIONTYPE_LIST">t</field>
+<field name="DURATION">1</field>
+<value name="AMOUNT">
+<shadow type="math_number" id="[(uW[tlHh/5.9Q%}04sp">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="cy_%5C7hZv^A8b*v=6gj">
+<field name="VAR" id="stake">Stake</field>
+</block>
+</value>
+<value name="PREDICTION">
+<shadow type="math_number" id="F+K+^;F/W[0b8]X_?`{A">
+<field name="NUM">1</field>
+</shadow>
+<block type="math_number" id="2O4}~kK)6VRQ;RfC]T~`">
+<field name="NUM">1</field>
+</block>
+</value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+<block type="after_purchase" id="jF+g$ESXam@rF.=$:jzq" x="13" y="763">
+<statement name="AFTERPURCHASE_STACK">
+<block type="controls_if" id="7-kL0G~JWk&/q(6~+c%Y">
+<mutation else="1"></mutation>
+<value name="IF0">
+<block type="contract_check_result" id="s^}K3w]hU$Z~g]a^~i8l">
+<field name="CHECK_RESULT">win</field>
+</block>
+</value>
+<statement name="DO0">
+<block type="variables_set" id="^c3j+aO`KEp3R)n)?Jjg">
+<field name="VAR" id="recovery_mode">Recovery Mode</field>
+<value name="VALUE">
+<block type="logic_boolean" id="|P!dL4]S;)WN`i[;jXZo">
+<field name="BOOL">FALSE</field>
+</block>
+</value>
+<next>
+<block type="variables_set" id="Xx@7:q)`t})V*Qq-;w[P">
+<field name="VAR" id="stake">Stake</field>
+<value name="VALUE">
+<block type="variables_get" id="c]8j6G5%L7w:yh}E~`?(">
+<field name="VAR" id="initial_stake">Initial Stake</field>
+</block>
+</value>
+</block>
+</next>
+</block>
+</statement>
+<statement name="ELSE">
+<block type="variables_set" id="mt[k*%CR[3?w#b!z6L]j">
+<field name="VAR" id="stake">Stake</field>
+<value name="VALUE">
+<block type="math_arithmetic" id=".R^IiM2|UAcE-PRj1N[.">
+<field name="OP">MULTIPLY</field>
+<value name="A">
+<shadow type="math_number" id="iKRl(y|$!C2=;,]{eS[W">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="}Jh/MpJRK/NW=v6^M%WN">
+<field name="VAR" id="stake">Stake</field>
+</block>
+</value>
+<value name="B">
+<shadow type="math_number" id="i:Ez=`SJ9i|J.MlH`+I`">
+<field name="NUM">1</field>
+</shadow>
+<block type="variables_get" id="WtB@QxI#T%^1TR*`_8%(">
+<field name="VAR" id="martingale">Martingale</field>
+</block>
+</value>
+</block>
+</value>
+<next>
+<block type="variables_set" id="Y:l,?y=~)F/l@v1qC%Xo">
+<field name="VAR" id="recovery_mode">Recovery Mode</field>
+<value name="VALUE">
+<block type="logic_boolean" id="IQ-~c+{@W=0(@zL%g6F/">
+<field name="BOOL">TRUE</field>
+</block>
+</value>
+</block>
+</next>
+</block>
+</statement>
+<next>
+<block type="controls_if" id="ZTHNk,+]J[YI-3.#hK6E">
+<mutation elseif="1" else="1"></mutation>
+<value name="IF0">
+<block type="logic_compare" id="7X#YYq@#!.*s;`OQ}q(@">
+<field name="OP">GTE</field>
+<value name="A">
+<block type="total_profit" id="t-LjN#K=bLhR[HWnQjwF"></block>
+</value>
+<value name="B">
+<block type="variables_get" id="4J1C$8R`=Ctwq4kq3fA[">
+<field name="VAR" id="take_profit">Take Profit</field>
+</block>
+</value>
+</block>
+</value>
+<statement name="DO0">
+<block type="text_print" id="3R6|PlqH{/h^h%}~+}1/">
+<value name="TEXT">
+<shadow type="text" id="GgQr/FM8Cj*8L~+u2`Sg">
+<field name="TEXT">🎯 TAKE PROFIT HIT! Stopping bot.</field>
+</shadow>
+</value>
+</block>
+<block type="controls_flow_statements" id=":r-`+;z;4f/d[|Z*F3uB">
+<field name="FLOW">STOP</field>
+</block>
+</statement>
+<value name="IF1">
+<block type="logic_compare" id="b2G6m:Ka[9=#f]j!x`;K">
+<field name="OP">LTE</field>
+<value name="A">
+<block type="total_profit" id=":R/z{]r{?~P:3C`Yc!ZX"></block>
+</value>
+<value name="B">
+<block type="math_single" id="y7f(..zQo/~;nO}i.fLq">
+<field name="OP">NEG</field>
+<value name="NUM">
+<shadow type="math_number" id="Rh(x@H[-e+-2l{kblD+.">
+<field name="NUM">9</field>
+</shadow>
+<block type="variables_get" id="l(8O.PrI8Dv`n%C*gHmE">
+<field name="VAR" id="stop_loss">Stop Loss</field>
+</block>
+</value>
+</block>
+</value>
+</block>
+</value>
+<statement name="DO1">
+<block type="text_print" id="K`#WtV?H0a$co-j~!m)w">
+<value name="TEXT">
+<shadow type="text" id="%FyV$#y0-:c/??%6K3nI">
+<field name="TEXT">🚫 STOP LOSS HIT! Stopping bot.</field>
+</shadow>
+</value>
+</block>
+<block type="controls_flow_statements" id="T$U`)t,-J:@|`f`4N!Y{">
+<field name="FLOW">STOP</field>
+</block>
+</statement>
+<statement name="ELSE">
+<block type="trade_again" id="s!(0}U8m4fV*bSRQZ!S]"></block>
+</statement>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</blockly>
